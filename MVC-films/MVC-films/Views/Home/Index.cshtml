@@ -1,0 +1,36 @@
+﻿@model List<MovieApp.Models.Movie>
+
+@{
+    ViewData["Title"] = "Top 10 Movies";
+}
+
+<h1 class="mb-4 text-center">🎬 Топ-10 фільмів</h1>
+
+<div class="row">
+    @foreach (var movie in Model)
+    {
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="@movie.PosterPath"
+                     class="card-img-top"
+                     alt="@movie.Title">
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">@movie.Title</h5>
+
+                    <p class="text-muted mb-1">
+                        Режисер: @movie.Director
+                    </p>
+
+                    <p class="text-muted mb-2">
+                        Дата: @movie.Year · Жанр: @movie.Genre
+                    </p>
+
+                    <p class="card-text small">
+                        @movie.Description
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
