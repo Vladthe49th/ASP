@@ -171,3 +171,54 @@ input[type="email"] {
     border: none;
 }
 
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    main {
+        padding: 20px 15px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+
+     table, th, td {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 10px 6px;
+    }
+
+    .contact-form {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    
+    img {
+        max-width: 100%;
+    }
+
+     section {
+        margin-bottom: 35px;
+    }
+}
+
+
