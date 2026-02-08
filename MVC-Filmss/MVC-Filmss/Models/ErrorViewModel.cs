@@ -1,4 +1,4 @@
-namespace MVC_Filmss.Models
+namespace MovieApp.Models
 {
     public class ErrorViewModel
     {
