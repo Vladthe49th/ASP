@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MovieApp.Validation;
+
 
 namespace MovieApp.Models
 {
@@ -6,8 +8,8 @@ namespace MovieApp.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(200)]
+        [Required(ErrorMessage = "Назва фільму обовʼязкова!")]
+        [StringLength(100, ErrorMessage = "Назва не може перевищувати 100 символів!")]
         public string Title { get; set; }
 
         [Required]
@@ -18,17 +20,18 @@ namespace MovieApp.Models
         [MaxLength(100)]
         public string Genre { get; set; }
 
-        [Range(1900, 2100)]
+        [NotFutureYear(ErrorMessage = "Рік фільму не може бути з майбутнього!")]
         public int Year { get; set; }
 
-        [Required]
+
+        [Url(ErrorMessage = "Некоректне посилання на постер!")]
         public string PosterPath { get; set; }
 
-        [MaxLength(1000)]
+        [Required(ErrorMessage = "Опис обовʼязковий!")]
+        [MinLength(20, ErrorMessage = "Опис має містити мінімум 20 символів!")]
         public string Description { get; set; }
 
-
-        [MaxLength(300)]
+        [Url(ErrorMessage = "Некоректне посилання на трейлер!")]
         public string TrailerUrl { get; set; }
 
     }

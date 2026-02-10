@@ -39,15 +39,18 @@ namespace MovieApp.Controllers
         // CREATE (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Movie movie)
+        public async Task<IActionResult> Create(Movie movie)
         {
             if (!ModelState.IsValid)
+            {
                 return View(movie);
+            }
 
             _context.Movies.Add(movie);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         // EDIT (GET)
         public IActionResult Edit(int id)
@@ -61,17 +64,21 @@ namespace MovieApp.Controllers
         // EDIT (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Movie movie)
+        public async Task<IActionResult> Edit(int id, Movie movie)
         {
-            if (id != movie.Id) return BadRequest();
+            if (id != movie.Id)
+                return NotFound();
 
             if (!ModelState.IsValid)
+            {
                 return View(movie);
+            }
 
             _context.Update(movie);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
 
         // DELETE (GET)
         public IActionResult Delete(int id)
