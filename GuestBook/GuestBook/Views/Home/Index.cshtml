@@ -1,0 +1,90 @@
+﻿@model IEnumerable<GuestBook.Models.Message>
+@using GuestBook.ViewModels
+
+@{
+    ViewData["Title"] = "Гостьова книга";
+}
+
+<h2>Гостьова книга</h2>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <form asp-action="AddMessage" method="post" class="mb-4">
+        <div class="mb-3">
+            <label class="form-label">Нове повідомлення</label>
+            <textarea name="Text" class="form-control" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">
+            Додати повідомлення
+        </button>
+    </form>
+}
+else
+{
+    <p>
+        Щоб залишити повідомлення, будь ласка,
+        <a asp-controller="Account" asp-action="Login">увійдіть</a>
+        або
+        <a asp-controller="Account" asp-action="Register">зареєструйтесь</a>.
+    </p>
+}
+
+<hr />
+
+@if (!Model.Any())
+{
+    <p>Повідомлень поки що немає.</p>
+}
+else
+{
+    foreach (var message in Model)
+    {
+        <table class="table table-bordered mb-4">
+            <tr>
+                <th style="width: 20%">Користувач</th>
+                <td>@message.User.Login</td>
+            </tr>
+            <tr>
+                <th>Повідомлення</th>
+                <td>@message.Text</td>
+            </tr>
+            <tr>
+                <th>Дата</th>
+                <td>@message.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+            </tr>
+        </table>
+    }
+}
+
+<div class="guestbook-container">
+
+    @foreach (var message in Model)
+    {
+        <div class="message-card">
+            <div class="message-header">
+                <span>@message.User.Login</span>
+                <span class="message-date">
+                    @message.CreatedAt.ToString("dd.MM.yyyy HH:mm")
+                </span>
+            </div>
+
+            <div class="message-text">
+                @message.Text
+            </div>
+        </div>
+    }
+
+</div>
+
+
+<form asp-action="AddMessage" method="post" class="mb-4">
+    <div class="mb-3">
+        <textarea name="Text"
+                  class="form-control"
+                  rows="4"
+                  placeholder="Залиште ваш запис у гостьовій книзі..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        ✍️ Додати запис
+    </button>
+</form>
