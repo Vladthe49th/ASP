@@ -1,5 +1,6 @@
 using GuestBook.Data;
 using Microsoft.EntityFrameworkCore;
+using GuestBook.Extensions;
 namespace GuestBook
 {
     public class Program
@@ -19,6 +20,8 @@ namespace GuestBook
                     connectionString,
                     ServerVersion.AutoDetect(connectionString)
                 ));
+
+            builder.Services.AddGuestBookServices();
 
             var app = builder.Build();
 

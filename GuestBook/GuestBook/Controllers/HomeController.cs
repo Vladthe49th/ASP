@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
-
 namespace GuestBook.Controllers
 {
     public class HomeController : Controller
@@ -25,7 +24,14 @@ namespace GuestBook.Controllers
                 .OrderByDescending(m => m.CreatedAt)
                 .ToListAsync();
 
-            return View(messages);
+            var model = new IndexViewModel
+            {
+                Messages = messages,
+                IsAuthenticated = User.Identity?.IsAuthenticated ?? false,
+                CurrentUserLogin = User.Identity?.Name
+            };
+
+            return View(model);
         }
 
         [Authorize]
@@ -51,9 +57,5 @@ namespace GuestBook.Controllers
 
             return RedirectToAction("Index");
         }
-
-
-
-
     }
 }
