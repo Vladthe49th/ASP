@@ -1,61 +1,53 @@
-using GuestBook.Data;
 using GuestBook.Models;
+using GuestBook.Repositories;
 using GuestBook.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
-namespace GuestBook.Controllers
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    private readonly IRepository _repository;
+
+    public HomeController(IRepository repository)
     {
-        private readonly GuestBookContext _context;
+        _repository = repository;
+    }
 
-        public HomeController(GuestBookContext context)
+    public async Task<IActionResult> Index()
+    {
+        var messages = await _repository.GetAllMessagesAsync();
+
+        var model = new IndexViewModel
         {
-            _context = context;
-        }
+            Messages = messages,
+            IsAuthenticated = User.Identity?.IsAuthenticated ?? false,
+            CurrentUserLogin = User.Identity?.Name
+        };
 
-        public async Task<IActionResult> Index()
-        {
-            var messages = await _context.Messages
-                .Include(m => m.User)
-                .OrderByDescending(m => m.CreatedAt)
-                .ToListAsync();
+        return View(model);
+    }
 
-            var model = new IndexViewModel
-            {
-                Messages = messages,
-                IsAuthenticated = User.Identity?.IsAuthenticated ?? false,
-                CurrentUserLogin = User.Identity?.Name
-            };
-
-            return View(model);
-        }
-
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> AddMessage(MessageViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return RedirectToAction("Index");
-
-            var userId = int.Parse(
-                User.FindFirstValue(ClaimTypes.NameIdentifier)!
-            );
-
-            var message = new Message
-            {
-                Text = model.Text,
-                CreatedAt = DateTime.Now,
-                UserId = userId
-            };
-
-            _context.Messages.Add(message);
-            await _context.SaveChangesAsync();
-
+    [Authorize]
+    [HttpPost]
+    public async Task<IActionResult> AddMessage(MessageViewModel model)
+    {
+        if (!ModelState.IsValid)
             return RedirectToAction("Index");
-        }
+
+        var userId = int.Parse(
+            User.FindFirstValue(ClaimTypes.NameIdentifier)!
+        );
+
+        var message = new Message
+        {
+            Text = model.Text,
+            CreatedAt = DateTime.Now,
+            UserId = userId
+        };
+
+        await _repository.AddMessageAsync(message);
+
+        return RedirectToAction("Index");
     }
 }

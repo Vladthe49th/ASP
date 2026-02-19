@@ -1,6 +1,7 @@
 using GuestBook.Data;
-using Microsoft.EntityFrameworkCore;
 using GuestBook.Extensions;
+using GuestBook.Repositories;
+using Microsoft.EntityFrameworkCore;
 namespace GuestBook
 {
     public class Program
@@ -11,6 +12,9 @@ namespace GuestBook
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<IRepository, Repository>();
+
 
             var connectionString = builder.Configuration
     .GetConnectionString("GuestBookConnection");
