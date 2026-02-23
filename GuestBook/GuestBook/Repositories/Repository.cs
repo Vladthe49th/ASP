@@ -1,5 +1,5 @@
-﻿using GuestBook.Data;
-using GuestBook.Models;
+﻿using GuestBook.DAL.Data;
+using GuestBook.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GuestBook.Repositories

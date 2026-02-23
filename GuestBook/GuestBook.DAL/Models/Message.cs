@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GuestBook.Models
+namespace GuestBook.DAL.Models
 {
     public class Message
     {

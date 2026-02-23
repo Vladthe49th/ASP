@@ -1,4 +1,4 @@
-﻿using GuestBook.Models;
+﻿using GuestBook.DAL.Models;
 
 namespace GuestBook.Services.Interfaces
 {

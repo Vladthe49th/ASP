@@ -1,7 +1,8 @@
-using GuestBook.Data;
+using GuestBook.DAL.Data;
 using GuestBook.Extensions;
-using GuestBook.Repositories;
 using Microsoft.EntityFrameworkCore;
+using GuestBook.DAL.Interfaces;
+using GuestBook.DAL.Repositories;
 namespace GuestBook
 {
     public class Program
@@ -13,17 +14,23 @@ namespace GuestBook
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddScoped<IRepository, Repository>();
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
 
 
             var connectionString = builder.Configuration
     .GetConnectionString("GuestBookConnection");
 
+
+
             builder.Services.AddDbContext<GuestBookContext>(options =>
                 options.UseMySql(
-                    connectionString,
-                    ServerVersion.AutoDetect(connectionString)
-                ));
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
+                    ServerVersion.AutoDetect(
+                        builder.Configuration.GetConnectionString("DefaultConnection")
+                    )
+                )
+            );
 
             builder.Services.AddGuestBookServices();
 

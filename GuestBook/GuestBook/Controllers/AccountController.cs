@@ -1,5 +1,5 @@
-﻿using GuestBook.Data;
-using GuestBook.Models;
+﻿using GuestBook.DAL.Data;
+using GuestBook.DAL.Models;
 using GuestBook.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

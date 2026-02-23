@@ -1,4 +1,4 @@
-﻿using GuestBook.Models;
+﻿using GuestBook.DAL.Models;
 using System.ComponentModel.DataAnnotations;
 
 public class User

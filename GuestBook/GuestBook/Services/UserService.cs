@@ -1,6 +1,6 @@
-﻿using GuestBook.Data;
+﻿using GuestBook.DAL.Data;
 using GuestBook.Helpers;
-using GuestBook.Models;
+using GuestBook.DAL.Models;
 using GuestBook.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
