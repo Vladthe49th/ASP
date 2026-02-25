@@ -15,5 +15,7 @@ namespace GuestBook.DAL.Interfaces
         void Remove(T entity);
 
         Task SaveChangesAsync();
+
+        void Update(T entity);
     }
 }

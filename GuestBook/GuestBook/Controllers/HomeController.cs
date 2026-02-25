@@ -1,3 +1,4 @@
+using GuestBook.BLL.Interfaces;
 using GuestBook.DAL.Interfaces;
 using GuestBook.DAL.Models;
 using GuestBook.ViewModels;
@@ -9,16 +10,16 @@ namespace GuestBook.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IRepository<Message> _messageRepository;
+        private readonly IMessageService _messageService;
 
-        public HomeController(IRepository<Message> messageRepository)
+        public HomeController(IMessageService messageService)
         {
-            _messageRepository = messageRepository;
+            _messageService = messageService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var messages = await _messageRepository.GetAllAsync();
+            var messages = await _messageService.GetAllMessagesAsync();
 
             var model = new IndexViewModel
             {
@@ -41,15 +42,7 @@ namespace GuestBook.Controllers
                 User.FindFirstValue(ClaimTypes.NameIdentifier)!
             );
 
-            var message = new Message
-            {
-                Text = model.Text,
-                CreatedAt = DateTime.Now,
-                UserId = userId
-            };
-
-            await _messageRepository.AddAsync(message);
-            await _messageRepository.SaveChangesAsync();
+            await _messageService.AddMessageAsync(model.Text, userId);
 
             return RedirectToAction("Index");
         }

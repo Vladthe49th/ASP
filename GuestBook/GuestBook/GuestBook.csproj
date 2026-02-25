@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GuestBook.DAL\GuestBook.DAL.csproj" />
+    <ProjectReference Include="..\GuestBook.BLL\GuestBook.BLL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,10 @@
+using GuestBook.BLL.Interfaces;
+using GuestBook.BLL.Services;
 using GuestBook.DAL.Data;
-using GuestBook.Extensions;
-using Microsoft.EntityFrameworkCore;
 using GuestBook.DAL.Interfaces;
 using GuestBook.DAL.Repositories;
+using GuestBook.BLL.Services;
+using Microsoft.EntityFrameworkCore;
 namespace GuestBook
 {
     public class Program
@@ -15,6 +17,10 @@ namespace GuestBook
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
 
 
 
@@ -32,7 +38,6 @@ namespace GuestBook
                 )
             );
 
-            builder.Services.AddGuestBookServices();
 
             var app = builder.Build();
 

@@ -45,5 +45,10 @@ namespace GuestBook.DAL.Repositories
         {
             await _context.SaveChangesAsync();
         }
+
+        public void Update(T entity)
+        {
+            _context.Set<T>().Update(entity);
+        }
     }
 }
