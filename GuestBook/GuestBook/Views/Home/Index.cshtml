@@ -1,65 +1,67 @@
-﻿@model GuestBook.ViewModels.IndexViewModel
-
-@{
-    ViewData["Title"] = "Гостьова книга";
+﻿@{
+    ViewData["Title"] = "Guest Book";
 }
 
-<h2>Гостьова книга</h2>
+<h2>Guest Book</h2>
 
-@if (Model.IsAuthenticated)
-{
-    <div class="alert alert-info">
-        Вітаємо, <strong>@Model.CurrentUserLogin</strong>!
-    </div>
-
-    <form asp-action="AddMessage" method="post" class="mb-4">
-        <div class="mb-3">
-            <textarea name="Text"
-                  class="form-control"
-                  rows="4"
-                  placeholder="Залиште ваш запис у гостьовій книзі..."
-                  required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">
-            ✍️ Додати запис
-        </button>
-    </form>
-}
-else
-{
-    <div class="alert alert-warning">
-        Щоб залишити повідомлення,
-        <a asp-controller="Account" asp-action="Login">увійдіть</a>
-        або
-        <a asp-controller="Account" asp-action="Register">зареєструйтесь</a>.
-    </div>
-}
+<div id="messages"></div>
 
 <hr />
 
-@if (!Model.Messages.Any())
+@if (User.Identity?.IsAuthenticated ?? false)
 {
-    <p>Повідомлень поки що немає.</p>
+    <div>
+        <textarea id="messageText" rows="3" cols="50"></textarea>
+        <br />
+        <button onclick="addMessage()">Send</button>
+    </div>
 }
 else
 {
-    <div class="guestbook-container">
+    <p>You must be logged in to post a message.</p>
+}
 
-        @foreach (var message in Model.Messages)
-        {
-            <div class="message-card mb-3 p-3 border rounded shadow-sm">
-                <div class="d-flex justify-content-between mb-2">
-                    <strong>@message.User.Login</strong>
-                    <span class="text-muted">
-                        @message.CreatedAt.ToString("dd.MM.yyyy HH:mm")
-                    </span>
-                </div>
+<script>
+    async function loadMessages() {
+        const response = await fetch('/api/messages');
+        const messages = await response.json();
 
-                <div>
-                    @message.Text
-                </div>
-            </div>
+        const container = document.getElementById('messages');
+        container.innerHTML = '';
+
+        messages.forEach(m => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <strong>${m.user?.login ?? 'Unknown'}</strong>
+                <small>(${new Date(m.createdAt).toLocaleString()})</small>
+                <p>${m.text}</p>
+                <hr/>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    async function addMessage() {
+        const textArea = document.getElementById('messageText');
+        const text = textArea.value;
+
+        if (!text.trim()) {
+            alert("Message cannot be empty");
+            return;
         }
 
-    </div>
-}
+        await fetch('/api/messages', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: text })
+        });
+
+        textArea.value = '';
+        await loadMessages();
+    }
+
+    // Завантажуємо повідомлення при відкритті сторінки
+    loadMessages();
+</script>
