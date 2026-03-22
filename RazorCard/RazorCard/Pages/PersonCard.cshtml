@@ -1,0 +1,20 @@
+﻿@page
+@model PersonCardModel
+
+@if (Model.CardPerson == null)
+{
+    <h2>No data found 😢</h2>
+}
+else
+{
+    <div class="card">
+        <h2>@Model.CardPerson.FullName</h2>
+
+        <p><strong>Email:</strong> @Model.CardPerson.Email</p>
+        <p><strong>Phone:</strong> @Model.CardPerson.Phone</p>
+        <p><strong>Age:</strong> @Model.CardPerson.Age</p>
+        <p><strong>Birth Date:</strong> @Model.CardPerson.BirthDate.ToShortDateString()</p>
+
+        <p class="bio">@Model.CardPerson.ShortBio</p>
+    </div>
+}
