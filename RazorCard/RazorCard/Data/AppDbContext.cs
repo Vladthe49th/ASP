@@ -24,8 +24,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Person>().HasData(new Person
         {
             Id = 1,
-            FirstName = "Vladislav",
-            LastName = "Yerts",
+            FullName = "Vlad Gerts",
             Email = "vlad@example.com",
             Phone = "+380000000000",
             BirthDate = new DateTime(2000, 1, 1),
