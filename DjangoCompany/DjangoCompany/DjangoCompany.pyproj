@@ -53,6 +53,9 @@
     <Compile Include="Shop\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="main\templates\main\404.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="main\templates\main\about.html">
       <SubType>Code</SubType>
     </Content>
