@@ -6,6 +6,9 @@ def home(request):
 def news(request):
     return render(request, 'main/news.html')
 
+def news_404(request):
+    raise Http404("Сторінку про новини не знайдено!")
+
 def management(request):
     return render(request, 'main/management.html')
 

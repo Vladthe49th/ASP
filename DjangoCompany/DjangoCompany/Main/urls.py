@@ -8,6 +8,7 @@ urlpatterns = [
     path('management/', views.management, name='management'),
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
+    re_path(r'^news/.+$', views.news_404),
     
 ]
 
