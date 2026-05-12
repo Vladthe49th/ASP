@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Products Store</h1>
+
+    <div class="products-grid">
+
+        {% for product in products %}
+        {% include "shop/partials/product_card.html" with product=product %}
+        {% endfor %}
+
+    </div>
+
+</body>
+</html>

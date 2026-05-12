@@ -62,6 +62,9 @@
     <Content Include="main\templates\main\base.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="main\templates\main\catalog.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="main\templates\main\contacts.html">
       <SubType>Code</SubType>
     </Content>

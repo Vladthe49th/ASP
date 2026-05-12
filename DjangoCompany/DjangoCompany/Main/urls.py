@@ -9,6 +9,7 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contacts/', views.contacts, name='contacts'),
     re_path(r'^news/.+$', views.news_404),
+    path('catalog/', views.catalog, name='catalog'),
     
 ]
 

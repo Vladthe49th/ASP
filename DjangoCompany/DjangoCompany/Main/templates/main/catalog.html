@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<h1>Каталог</h1>
+
+<h3>Знайдено товарів: {{ products|length }}</h3>
+
+{% if products %}
+
+    {% for product in products %}
+
+<div class="card {% if product.price > 5000 %}expensive{% endif %}">
+
+    <h2>{{ product.name }}</h2>
+
+    <p>Категорія: {{ product.category }}</p>
+
+    <p>Ціна: {{ product.price }} грн</p>
+
+    {% if product.discount > 0 %}
+    <p>Знижка: {{ product.discount }}%</p>
+
+    <p>
+        Кінцева ціна:
+        {{ product.price|floatformat:0|add:"0"|floatformat }}
+    </p>
+    {% endif %}
+
+</div>
+
+    {% endfor %}
+
+{% else %}
+<p>Товарів поки немає!</p>
+{% endif %}
+
+{% endblock %}
