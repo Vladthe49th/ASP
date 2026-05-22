@@ -1,0 +1,39 @@
+<h1>Manufacturers</h1>
+
+<a href="{% url 'manufacturer_create' %}">
+    Create Manufacturer
+</a>
+
+<hr>
+
+{% for manufacturer in manufacturers %}
+
+<div>
+    <h3>{{ manufacturer.name }}</h3>
+
+    <p>Country: {{ manufacturer.country }}</p>
+
+    <p>Email: {{ manufacturer.email }}</p>
+
+    <p>Website: {{ manufacturer.website }}</p>
+
+    <p>Established: {{ manufacturer.established_year }}</p>
+
+    {% if manufacturer.logo %}
+    <img src="{{ manufacturer.logo.url }}" width="150">
+    {% endif %}
+
+    <br><br>
+
+    <a href="{% url 'manufacturer_edit' manufacturer.pk %}">
+        Edit
+    </a>
+
+    <a href="{% url 'manufacturer_delete' manufacturer.pk %}">
+        Delete
+    </a>
+</div>
+
+<hr>
+
+{% endfor %}

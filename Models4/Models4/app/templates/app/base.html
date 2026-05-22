@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shop Project</title>
+</head>
+<body>
+
+    <nav>
+
+        <a href="{% url 'product_list' %}">
+            Products
+        </a>
+
+        |
+
+        <a href="{% url 'category_list' %}">
+            Categories
+        </a>
+
+        |
+
+        <a href="{% url 'manufacturer_list' %}">
+            Manufacturers
+        </a>
+
+    </nav>
+
+    <hr>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
