@@ -1,0 +1,32 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2>Форма привітання</h2>
+    <hr>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">
+            Надіслати
+        </button>
+
+    </form>
+
+    <br>
+
+    {% if greeting %}
+    <div class="alert alert-success">
+        {{ greeting }}
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
