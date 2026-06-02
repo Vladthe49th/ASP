@@ -3,7 +3,7 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <Name>DjangoCompany</Name>
     <RootNamespace>DjangoCompany</RootNamespace>
-    <InterpreterId>MSBuild|env|$(MSBuildProjectFullPath)</InterpreterId>
+    <InterpreterId>MSBuild|env1|$(MSBuildProjectFullPath)</InterpreterId>
     <TestFramework>Pytest</TestFramework>
   </PropertyGroup>
   <PropertyGroup>
@@ -49,6 +49,9 @@
     </Compile>
     <Compile Include="Shop\migrations\__init__.py" />
     <Compile Include="Shop\models.py" />
+    <Compile Include="Shop\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Shop\tests.py" />
     <Compile Include="Shop\urls.py">
       <SubType>Code</SubType>
@@ -103,6 +106,15 @@
     <Folder Include="Static\css\" />
   </ItemGroup>
   <ItemGroup>
+    <Interpreter Include="env1\">
+      <Id>env1</Id>
+      <Version>3.9</Version>
+      <Description>env1 (Python 3.9 (64-bit))</Description>
+      <InterpreterPath>Scripts\python.exe</InterpreterPath>
+      <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
+      <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
+      <Architecture>X64</Architecture>
+    </Interpreter>
     <Interpreter Include="env\">
       <Id>env</Id>
       <Version>3.9</Version>

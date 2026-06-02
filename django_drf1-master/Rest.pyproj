@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Name>Rest</Name>
+    <RootNamespace>Rest</RootNamespace>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>36de9062-4e70-45ca-a56b-eaa5979a91ac</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <DjangoSettingsModule>Rest.settings</DjangoSettingsModule>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="api\forms.py" />
+    <Compile Include="api\models.py" />
+    <Compile Include="api\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="api\views.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="Rest\settings.py" />
+    <Compile Include="Rest\urls.py" />
+    <Compile Include="Rest\wsgi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="api\" />
+    <Folder Include="api\migrations\" />
+    <Folder Include="api\static\" />
+    <Folder Include="api\static\api\" />
+    <Folder Include="api\static\api\content\" />
+    <Folder Include="api\static\api\fonts\" />
+    <Folder Include="api\static\api\scripts\" />
+    <Folder Include="api\templates\" />
+    <Folder Include="api\templates\api\" />
+    <Folder Include="Rest\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db.sqlite3" />
+    <Content Include="api\static\api\content\bootstrap.css" />
+    <Content Include="api\static\api\content\bootstrap.min.css" />
+    <Content Include="api\static\api\content\site.css" />
+    <Content Include="api\static\api\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="api\static\api\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="api\static\api\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="api\static\api\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="api\static\api\scripts\bootstrap.js" />
+    <Content Include="api\static\api\scripts\bootstrap.min.js" />
+    <Content Include="api\static\api\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="api\static\api\scripts\jquery-1.10.2.js" />
+    <Content Include="api\static\api\scripts\jquery-1.10.2.min.js" />
+    <Content Include="api\static\api\scripts\jquery-1.10.2.min.map" />
+    <Content Include="api\static\api\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="api\static\api\scripts\jquery.validate.js" />
+    <Content Include="api\static\api\scripts\jquery.validate.min.js" />
+    <Content Include="api\static\api\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="api\static\api\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="api\static\api\scripts\modernizr-2.6.2.js" />
+    <Content Include="api\static\api\scripts\respond.js" />
+    <Content Include="api\static\api\scripts\respond.min.js" />
+    <Content Include="api\static\api\scripts\_references.js" />
+    <Content Include="api\templates\api\about.html" />
+    <Content Include="api\templates\api\contact.html" />
+    <Content Include="api\templates\api\index.html" />
+    <Content Include="api\templates\api\layout.html" />
+    <Content Include="api\templates\api\login.html" />
+    <Content Include="api\templates\api\loginpartial.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

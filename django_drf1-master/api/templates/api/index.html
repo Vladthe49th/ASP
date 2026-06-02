@@ -1,0 +1,32 @@
+{% extends "api/layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Мінімальний приклад на DRF</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Доступні GET ендпоінти</h2>
+
+        <div class="list-group">
+            <a href="/api/hello/" class="list-group-item list-group-item-action">
+                <h4 class="list-group-item-heading">1. Hello World (Browsable API)</h4>
+                <p class="list-group-item-text">Простий GET-запит: повертає привітання та поточний час в красивий веб-інтерфейс DRF</p>
+            </a>
+
+            <a href="/api/info/" class="list-group-item list-group-item-action">
+                <h4 class="list-group-item-heading">2. Request Info (Browsable API)</h4>
+                <p class="list-group-item-text">Повертає інформацію про запит (headers, query params тощо)</p>
+            </a>
+
+            <a href="/api/hello/?format=json" class="list-group-item list-group-item-action">
+                <h4 class="list-group-item-heading">3. Hello World (JSON)</h4>
+                <p class="list-group-item-text">Повертає привітання та поточний час у форматі JSON</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

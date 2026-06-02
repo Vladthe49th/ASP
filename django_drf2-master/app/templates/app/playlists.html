@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlists</title>
+</head>
+<body>
+
+    <h1>Playlists</h1>
+
+    {% for playlist in playlists %}
+    <h2>{{ playlist.name }}</h2>
+
+    <p>{{ playlist.description }}</p>
+
+    <ul>
+        {% for track in playlist.tracks.all %}
+        <li>{{ track.title }}</li>
+        {% endfor %}
+    </ul>
+
+    {% endfor %}
+
+</body>
+</html>
