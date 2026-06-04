@@ -7,7 +7,7 @@ SECRET_KEY = 'b2ea905d-f402-441b-b8e9-fbe0b3899a92'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'corsheaders',
@@ -32,6 +32,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Rest.urls'
@@ -91,3 +93,7 @@ STATICFILES_FINDERS = [
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+STATICFILES_STORAGE = (
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
