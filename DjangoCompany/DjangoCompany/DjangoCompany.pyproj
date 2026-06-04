@@ -81,6 +81,7 @@
     <Content Include="main\templates\main\news.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Procfile" />
     <Content Include="requirements.txt" />
     <Content Include="Shop\templates\Shop\add_product.html">
       <SubType>Code</SubType>

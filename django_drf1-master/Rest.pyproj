@@ -34,6 +34,9 @@
   <ItemGroup>
     <Compile Include="api\forms.py" />
     <Compile Include="api\models.py" />
+    <Compile Include="api\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="api\urls.py">
       <SubType>Code</SubType>
     </Compile>

@@ -7,6 +7,10 @@ from django.http import HttpRequest
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from datetime import datetime
+from rest_framework import status
+
+from .models import Person
+from .serializers import PersonSerializer
 
 
 @api_view(['GET']) # декоратор для вказівки, що цей метод обробляє GET запити
@@ -122,3 +126,39 @@ def about(request):
             'year':datetime.now().year,
         }
     )
+
+
+
+@api_view(['GET', 'POST'])
+def persons(request):
+
+    if request.method == 'GET':
+
+        people = Person.objects.all()
+
+        serializer = PersonSerializer(
+            people,
+            many=True
+        )
+
+        return Response(serializer.data)
+
+    if request.method == 'POST':
+
+        serializer = PersonSerializer(
+            data=request.data
+        )
+
+        if serializer.is_valid():
+
+            serializer.save()
+
+            return Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED
+            )
+
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
