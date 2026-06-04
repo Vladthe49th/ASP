@@ -84,6 +84,7 @@
     <Content Include="app\templates\app\base.html" />
     <Content Include="app\templates\app\tracks\detail.html" />
     <Content Include="app\templates\app\tracks\list.html" />
+    <Content Include="build.sh" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
     <Content Include="app\static\app\content\bootstrap.min.css" />
